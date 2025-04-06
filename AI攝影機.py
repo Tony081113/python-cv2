@@ -20,7 +20,6 @@ def download_classifier(classifier_path):
     """下載分類器檔案"""
     url = "https://github.com/opencv/opencv/raw/master/data/haarcascades/haarcascade_frontalface_alt2.xml"
     print(f"分類器檔案不存在，正在下載: {url}")
-    print(f"當前工作目錄: {os.getcwd()}")
     try:
         urllib.request.urlretrieve(url, classifier_path)
         print(f"分類器已下載並儲存到: {classifier_path}")
