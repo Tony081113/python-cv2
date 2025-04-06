@@ -3,9 +3,9 @@ import cv2
 import os
 import urllib.request
 
-def setup_img_directory(base_dir):
-    """檢查並創建 img 資料夾"""
-    img_dir = os.path.join(base_dir, 'img')
+def setup_img_directory(base_dir, folder_name):
+    """檢查並創建指定的資料夾"""
+    img_dir = os.path.join(base_dir, folder_name)
     os.makedirs(img_dir, exist_ok=True)
     return img_dir
 
@@ -44,9 +44,14 @@ def detect_and_display_faces(frame, classifier):
 def main():
     print('載入基本設定中......')
 
-    # 設定 img 資料夾
+    # 讓用戶輸入資料夾名稱
+    folder_name = input("請輸入要儲存圖片的資料夾名稱: ")
+    if not folder_name.strip():
+        folder_name = "img"  # 如果未輸入，預設為 "img"
+
+    # 設定資料夾
     base_dir = os.getcwd()
-    img_dir = setup_img_directory(base_dir)
+    img_dir = setup_img_directory(base_dir, folder_name)
     next_img_index = get_next_image_index(img_dir)
 
     # 檢查並下載分類器
